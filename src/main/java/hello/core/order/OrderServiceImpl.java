@@ -14,12 +14,26 @@ public class OrderServiceImpl implements OrderService{
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
-    private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy;
+    //final : 무조건 값이 있어야 한다 => 생성자 호출
+//    private final MemberRepository memberRepository;
+//    private final DiscountPolicy discountPolicy;
+
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
+
+    // 생성자가 1개일때는 @Autowired 생략 가능!
+//    @Autowired
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public void setMemberRepository(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
+    }
+    @Autowired
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
         this.discountPolicy = discountPolicy;
     }
 
