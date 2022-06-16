@@ -19,19 +19,19 @@ public class OrderServiceImpl implements OrderService{
 //    private final DiscountPolicy discountPolicy;
 
     // 선택적 의존관계시 생성할때 값이 있어햐하는 final은 사용x
-//    private MemberRepository memberRepository;
-//    private DiscountPolicy discountPolicy;
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
 
     // 필드 주입
-    @Autowired private DiscountPolicy discountPolicy;
-    @Autowired private MemberRepository memberRepository;
+//    @Autowired private DiscountPolicy discountPolicy;
+//    @Autowired private MemberRepository memberRepository;
 
     // 생성자가 1개일때는 @Autowired 생략 가능!
 //    @Autowired
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     // 선택적 의존관계
 //    @Autowired(required = false)
@@ -42,6 +42,13 @@ public class OrderServiceImpl implements OrderService{
 //    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
 //        this.discountPolicy = discountPolicy;
 //    }
+
+    @Autowired
+    public void init(MemberRepository memberRepository, DiscountPolicy
+            discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
