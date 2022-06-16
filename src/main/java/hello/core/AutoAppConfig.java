@@ -1,5 +1,8 @@
 package hello.core;
 
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -13,5 +16,12 @@ import org.springframework.context.annotation.FilterType;
         excludeFilters = @ComponentScan.Filter(type= FilterType.ANNOTATION, classes =  Configuration.class)
 )
 public class AutoAppConfig {
+
+    // 빈 등록 충돌이 나면 오류시 스프링 부트 에러
+    // => 빈등록시 충돌이 나지 않도록 설정하는게 개발하는데 중요한 원칙!
+//    @Bean(name = "memoryMemberRepository")
+//    public MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+//    }
 
 }
