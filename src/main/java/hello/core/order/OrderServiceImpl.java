@@ -7,9 +7,9 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-/*
 @Component
 public class OrderServiceImpl implements OrderService{
 //    private final MemberRepository memoryMemberRepository = new MemoryMemberRepository();
@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService{
 
     // 생성자가 1개일때는 @Autowired 생략 가능! - 1) 생성자 주입
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
@@ -70,8 +70,8 @@ public class OrderServiceImpl implements OrderService{
         return memberRepository;
     }
 }
-*/
 
+/* 롬복 적용 - getter,setter,생성자 자동생성..
 
 @Component
 @RequiredArgsConstructor
@@ -98,3 +98,4 @@ public class OrderServiceImpl implements OrderService {
 
 
 }
+*/
